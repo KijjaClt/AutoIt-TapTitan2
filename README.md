@@ -1,1 +1,1 @@
-"# AutoIt-TapTitan2" 
+# AutoIt-TapTitan2
