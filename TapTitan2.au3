@@ -9,9 +9,7 @@
 #ce ----------------------------------------------------------------------------
 
 ; Script Start - Add your code below here
-#include <AutoItConstants.au3>
 #include <MyFunc.au3>
-#include <MsgBoxConstants.au3>
 
 HotKeySet("{ESC}", "Terminate")
 HotKeySet("{F5}", "Pause")
@@ -19,6 +17,7 @@ HotKeySet("{F5}", "Pause")
 MoveWindow()
 
 If WinActivate($TITLE_NAME) Then
+;~    TestScreen()
    $i = 0
    While True
 	  Attack()
@@ -26,16 +25,20 @@ If WinActivate($TITLE_NAME) Then
 	  If $i == 10 Then
 		 UpgradePlayer()
 		 ManageAngle()
-;~ 		 SwitchAttackBoss()
+		 ;SwitchAttackBoss()
 		 $i = 0
 	  EndIf
 
 	  $i += 1
    WEnd
 Else
-   MsgBox($MB_ICONERROR, "Error", "Not Found Vysor")
+   MsgBox(16, "Error", "Not Found Vysor")
 EndIf
 
-Func Test()
-;~    ConsoleWrite($dCoord & @LF)
+Func TestScreen()
+;~    MouseMove(@DesktopWidth - $WindowWidth,@DesktopHeight - 230, 30)
+   MouseMove(ScreenWidth(55),ScreenHeight(70), 30)
+   Sleep(1000)
+;~    MouseMove( @DesktopWidth,@DesktopHeight - 185, 30)
+   MouseMove(ScreenWidth(94),ScreenHeight(77), 30)
 EndFunc
