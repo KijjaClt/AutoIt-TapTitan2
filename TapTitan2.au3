@@ -9,22 +9,33 @@
 #ce ----------------------------------------------------------------------------
 
 ; Script Start - Add your code below here
+#include <AutoItConstants.au3>
 #include <MyFunc.au3>
 #include <MsgBoxConstants.au3>
 
-DllOpen($DLL)
+HotKeySet("{ESC}", "Terminate")
+HotKeySet("{F5}", "Pause")
 
-If WinActivate("Lenovo A7010a48") Then
-   Do
-	  _Attack()
+MoveWindow()
 
-	  If _IsPressed("50",$DLL) Then ; If Pressed Key 'P'
-		 _Pause()
+If WinActivate($TITLE_NAME) Then
+   $i = 0
+   While True
+	  Attack()
+
+	  If $i == 10 Then
+		 UpgradePlayer()
+		 ManageAngle()
+;~ 		 SwitchAttackBoss()
+		 $i = 0
 	  EndIf
 
-   Until _IsPressed("73",$DLL) ; If Pressed Key 'F4'
+	  $i += 1
+   WEnd
 Else
    MsgBox($MB_ICONERROR, "Error", "Not Found Vysor")
 EndIf
 
-DllClose($DLL)
+Func Test()
+;~    ConsoleWrite($dCoord & @LF)
+EndFunc
