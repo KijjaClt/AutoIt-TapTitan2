@@ -1,7 +1,7 @@
 #cs ----------------------------------------------------------------------------
 
  AutoIt Version: 3.3.14.2
- Author:         myName
+ Author:         Kijja
 
  Script Function:
 	Template AutoIt script.
@@ -33,6 +33,14 @@ Func MoveWindow()
    PrintLog("Move window to correct position.")
 EndFunc
 
+Func ScreenHeight($percent)
+   Return ($percent / 100) * $WindowHeight
+EndFunc
+
+Func ScreenWidth($percent)
+   Return ($percent / 100) * $WindowWidth
+EndFunc
+
 Func Attack()
    ControlClick($TITLE_NAME, "", "", "left", 1, 200, 165)
    Sleep(50)
@@ -58,6 +66,10 @@ Func TogglePause()
    EndIf
 EndFunc
 
+Func Terminate()
+   PrintLog("Exit!!")
+   Exit
+EndFunc
 
 Func UpgradePlayer()
    PixelSearch(ScreenWidth(69), ScreenHeight(70), ScreenWidth(97.5), ScreenHeight(76.8), 0xF06D17, 5)
@@ -70,11 +82,25 @@ Func UpgradePlayer()
 EndFunc
 
 Func ManageAngle()
-   SearchAngle1()
-EndFunc
+   Local $result = ImageSearch("play_ads.png")
+   If $result > 0 Then
+	  PrintLog("Found angle!!")
 
-Func ClickFightBoss()
-   SearchBoss()
+	  Sleep(1000)
+	  MouseClick("",$x, $y,1,1)
+	  Sleep(45000)
+	  Send("{END}")
+	  Sleep(6000)
+
+	  MoveWindow()
+
+	  Local $result = ImageSearch("collect_reward.png")
+	  If $result > 0 Then
+		 Sleep(1000)
+		 MouseClick("",$x, $y,1,1)
+		 Sleep(2000)
+	  EndIf
+   EndIf
 EndFunc
 
 Func SwitchAttackBoss()
@@ -83,94 +109,33 @@ Func SwitchAttackBoss()
    EndIf
 EndFunc
 
-Func SearchPetUlti()
-   $fileA = @ScriptDir & "\Capture.PNG"
-
-   _GDIPlus_Startup()
-
-   $hImageA =_GDIPlus_ImageLoadFromFile($fileA) ;this is the firefox icon use something else if you don't have it.
-   $hBitmapA = _GDIPlus_BitmapCreateHBITMAPFromBitmap($hImageA)
-
-   $x = 0
-   $y = 0
-   $result = _ImageSearch($hBitmapA, 1, $x, $y, 5, 0) ;Zero will search against your active screen
-   If $result > 0 Then
-	  $petStatus = 2
-	  PrintLog("Pet Status: 2")
-   EndIf
-
-   _GDIPlus_ImageDispose($hImageA)
-   _GDIPlus_Shutdown()
-EndFunc
-
-Func SearchBoss()
-   $fileA = @ScriptDir & "\fight_boss.png"
-
-   _GDIPlus_Startup()
-
-   $hImageA =_GDIPlus_ImageLoadFromFile($fileA) ;this is the firefox icon use something else if you don't have it.
-   $hBitmapA = _GDIPlus_BitmapCreateHBITMAPFromBitmap($hImageA)
-
-   $x = 0
-   $y = 0
-   $result = _ImageSearch($hBitmapA, 1, $x, $y, 5, 0) ;Zero will search against your active screen
+Func ClickFightBoss()
+   Local $result = $ImageSearch("fight_boss.png")
    If $result > 0 Then
 	  PrintLog("Switch to attack boss.")
+
 	  Sleep(500)
 	  MouseClick("",$x, $y,1,1)
 	  Sleep(100)
-
    EndIf
-
-   _GDIPlus_ImageDispose($hImageA)
-   _GDIPlus_Shutdown()
 EndFunc
 
-Func SearchAngle1()
-   $fileA = @ScriptDir & "\play_ads.png"
+Func ImageSearch($imgName)
+   $fileA = @ScriptDir & "\" & $imgName
 
    _GDIPlus_Startup()
 
-   $hImageA =_GDIPlus_ImageLoadFromFile($fileA) ;this is the firefox icon use something else if you don't have it.
+   $hImageA =_GDIPlus_ImageLoadFromFile($fileA)
    $hBitmapA = _GDIPlus_BitmapCreateHBITMAPFromBitmap($hImageA)
 
    $x = 0
    $y = 0
-   $result = _ImageSearch($hBitmapA, 1, $x, $y, 5, 0) ;Zero will search against your active screen
-   If $result > 0 Then
-	  PrintLog("Found angle!!")
-	  Sleep(1000)
-	  MouseClick("",$x, $y,1,1)
-	  Sleep(45000)
-	  Send("{END}")
-	  Sleep(6000)
-	  MoveWindow()
-	  SearchAngle2()
-   EndIf
+   $result = _ImageSearch($hBitmapA, 1, $x, $y, 5, 0)
 
    _GDIPlus_ImageDispose($hImageA)
    _GDIPlus_Shutdown()
-EndFunc
 
-Func SearchAngle2()
-   $fileA = @ScriptDir & "\collect_reward.png"
-
-   _GDIPlus_Startup()
-
-   $hImageA =_GDIPlus_ImageLoadFromFile($fileA) ;this is the firefox icon use something else if you don't have it.
-   $hBitmapA = _GDIPlus_BitmapCreateHBITMAPFromBitmap($hImageA)
-
-   $x = 0
-   $y = 0
-   $result = _ImageSearch($hBitmapA, 1, $x, $y, 5, 0) ;Zero will search against your active screen
-   If $result > 0 Then
-	  Sleep(1000)
-	  MouseClick("",$x, $y,1,1)
-	  Sleep(2000)
-   EndIf
-
-   _GDIPlus_ImageDispose($hImageA)
-   _GDIPlus_Shutdown()
+   Return $result
 EndFunc
 
 Func SaveLog($text)
@@ -198,14 +163,6 @@ Func SaveLog($text)
     FileClose($hFileOpen)
 EndFunc
 
-Func ScreenHeight($percent)
-   Return ($percent / 100) * $WindowHeight
-EndFunc
-
-Func ScreenWidth($percent)
-   Return ($percent / 100) * $WindowWidth
-EndFunc
-
 Func PrintLog($text)
    ConsoleWrite(TimeStamp() & " " & $text & @LF)
    SaveLog($text)
@@ -213,9 +170,4 @@ EndFunc
 
 Func TimeStamp()
    Return "[" & @MDAY & "-" & @MON & "-" & @YEAR & " | " & @HOUR & ":" & @MIN & ":" & @SEC & "]"
-EndFunc
-
-Func Terminate()
-   PrintLog("Exit!!")
-   Exit
 EndFunc
