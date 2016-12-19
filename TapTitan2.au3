@@ -13,10 +13,10 @@
 
 HotKeySet("{ESC}", "Terminate")
 HotKeySet("{F5}", "Pause")
-
-MoveWindow()
+HotKeySet("{b}", "ClickFightBoss")
 
 If WinActivate($TITLE_NAME) Then
+   MoveWindow()
 ;~    TestScreen()
    $i = 0
    While True
@@ -25,20 +25,20 @@ If WinActivate($TITLE_NAME) Then
 	  If $i == 10 Then
 		 UpgradePlayer()
 		 ManageAngle()
-		 ;SwitchAttackBoss()
+		 SwitchAttackBoss()
 		 $i = 0
 	  EndIf
 
 	  $i += 1
    WEnd
 Else
-   MsgBox(16, "Error", "Not Found Vysor")
+   MsgBox(16, "Error", "Not Found Nox")
 EndIf
 
 Func TestScreen()
-;~    MouseMove(@DesktopWidth - $WindowWidth,@DesktopHeight - 230, 30)
-   MouseMove(ScreenWidth(55),ScreenHeight(70), 30)
+;~    MouseMove(@DesktopWidth - $WindowWidth,@DesktopHeight / 2 + 30, 30)
+   MouseMove(ScreenWidth(69), ScreenHeight(70), 30)
    Sleep(1000)
-;~    MouseMove( @DesktopWidth,@DesktopHeight - 185, 30)
-   MouseMove(ScreenWidth(94),ScreenHeight(77), 30)
+;~    MouseMove(@DesktopWidth - 100,@DesktopHeight / 2 + 45, 30)
+   MouseMove(ScreenWidth(97.5), ScreenHeight(76.8)), 30)
 EndFunc
