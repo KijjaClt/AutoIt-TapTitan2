@@ -901,3 +901,36 @@
 [20-12-2016 | 01:55:08] Upgrade level player.
 [20-12-2016 | 01:55:09] Upgrade level player.
 [20-12-2016 | 01:55:11] Upgrade level player.
+[20-12-2016 | 01:55:46] Upgrade level player.
+[20-12-2016 | 01:55:49] Exit!!
+[20-12-2016 | 01:57:00] Move window to correct position.
+[20-12-2016 | 01:57:01] Found angle!!
+[20-12-2016 | 01:57:53] Move window to correct position.
+[20-12-2016 | 01:58:24] Upgrade level player.
+[20-12-2016 | 02:01:27] Upgrade level player.
+[20-12-2016 | 02:02:57] Upgrade level player.
+[20-12-2016 | 02:05:00] Switch to attack boss.
+[20-12-2016 | 02:05:31] Switch to attack boss.
+[20-12-2016 | 02:06:27] Upgrade level player.
+[20-12-2016 | 02:07:03] Upgrade level player.
+[20-12-2016 | 02:07:04] Upgrade level player.
+[20-12-2016 | 02:08:23] Upgrade level player.
+[20-12-2016 | 02:08:51] Upgrade level player.
+[20-12-2016 | 02:10:00] Switch to attack boss.
+[20-12-2016 | 02:10:32] Switch to attack boss.
+[20-12-2016 | 02:10:46] Upgrade level player.
+[20-12-2016 | 02:13:25] Found angle!!
+[20-12-2016 | 02:14:17] Move window to correct position.
+[20-12-2016 | 02:14:43] Upgrade level player.
+[20-12-2016 | 02:15:01] Switch to attack boss.
+[20-12-2016 | 02:15:32] Switch to attack boss.
+[20-12-2016 | 02:19:18] Upgrade level player.
+[20-12-2016 | 02:20:00] Switch to attack boss.
+[20-12-2016 | 02:20:31] Switch to attack boss.
+[20-12-2016 | 02:22:12] Upgrade level player.
+[20-12-2016 | 02:25:01] Switch to attack boss.
+[20-12-2016 | 02:25:32] Switch to attack boss.
+[20-12-2016 | 02:26:56] Found angle!!
+[20-12-2016 | 02:27:48] Move window to correct position.
+[20-12-2016 | 02:28:00] Upgrade level player.
+[20-12-2016 | 02:28:54] Exit!!
