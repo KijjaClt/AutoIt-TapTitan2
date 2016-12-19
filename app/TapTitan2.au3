@@ -9,17 +9,17 @@
 #ce ----------------------------------------------------------------------------
 
 ; Script Start - Add your code below here
+
 #include <MyFunc.au3>
 
 HotKeySet("{ESC}", "Terminate")
 HotKeySet("{F5}", "Pause")
-HotKeySet("{b}", "ClickFightBoss")
+HotKeySet("{F7}", "ClickFightBoss")
 
 If WinActivate($TITLE_NAME) Then
    MoveWindow()
 ;~    TestScreen()
-   $i = 0
-   While True
+   For $i = 0 In True
 	  Attack()
 
 	  If $i == 10 Then
@@ -30,15 +30,7 @@ If WinActivate($TITLE_NAME) Then
 	  EndIf
 
 	  $i += 1
-   WEnd
+   Next
 Else
    MsgBox(16, "Error", "Not Found Nox")
 EndIf
-
-Func TestScreen()
-;~    MouseMove(@DesktopWidth - $WindowWidth,@DesktopHeight / 2 + 30, 30)
-   MouseMove(ScreenWidth(69), ScreenHeight(70), 30)
-   Sleep(1000)
-;~    MouseMove(@DesktopWidth - 100,@DesktopHeight / 2 + 45, 30)
-   MouseMove(ScreenWidth(97.5), ScreenHeight(76.8)), 30)
-EndFunc

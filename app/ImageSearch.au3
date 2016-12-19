@@ -1,4 +1,36 @@
 #include-once
+#cs ----------------------------------------------------------------------------
+
+ AutoIt Version: 3.3.14.2
+ Author:         Kijja
+
+ Script Function:
+	Template AutoIt script.
+
+#ce ----------------------------------------------------------------------------
+
+; Script Start - Add your code below here
+
+#include <GDIPlus.au3>
+
+Global $x = 0, $y = 0
+
+Func ImageSearch($imgName)
+   $fileA = StringTrimRight(@ScriptDir, 4) & "\img\" & $imgName
+
+   _GDIPlus_Startup()
+
+   $hImageA =_GDIPlus_ImageLoadFromFile($fileA)
+   $hBitmapA = _GDIPlus_BitmapCreateHBITMAPFromBitmap($hImageA)
+
+   $result = _ImageSearch($hBitmapA, 1, $x, $y, 5, 0)
+
+   _GDIPlus_ImageDispose($hImageA)
+   _GDIPlus_Shutdown()
+
+   Return $result
+EndFunc
+
 ; ------------------------------------------------------------------------------
 ;
 ; AutoIt Version: 3.0
@@ -40,12 +72,12 @@ Func _ImageSearchArea($findImage,$resultPosition,$x1,$y1,$right,$bottom, ByRef $
 	If IsString($findImage) Then
 		if $tolerance>0 then $findImage = "*" & $tolerance & " " & $findImage
 		If $HBMP = 0 Then
-			$result = DllCall("ImageSearchDLL.dll","str","ImageSearch","int",$x1,"int",$y1,"int",$right,"int",$bottom,"str",$findImage)
+			$result = DllCall("..\dll\ImageSearchDLL.dll","str","ImageSearch","int",$x1,"int",$y1,"int",$right,"int",$bottom,"str",$findImage)
 		Else
-			$result = DllCall("ImageSearchDLL.dll","str","ImageSearchEx","int",$x1,"int",$y1,"int",$right,"int",$bottom,"str",$findImage,"ptr",$HBMP)
+			$result = DllCall("..\dll\ImageSearchDLL.dll","str","ImageSearchEx","int",$x1,"int",$y1,"int",$right,"int",$bottom,"str",$findImage,"ptr",$HBMP)
 		EndIf
 	Else
-		$result = DllCall("ImageSearchDLL.dll","str","ImageSearchExt","int",$x1,"int",$y1,"int",$right,"int",$bottom, "int",$tolerance, "ptr",$findImage,"ptr",$HBMP)
+		$result = DllCall("..\dll\ImageSearchDLL.dll","str","ImageSearchExt","int",$x1,"int",$y1,"int",$right,"int",$bottom, "int",$tolerance, "ptr",$findImage,"ptr",$HBMP)
 	EndIf
 
 	; If error exit
