@@ -16,13 +16,15 @@ HotKeySet("{ESC}", "Terminate")
 HotKeySet("{F5}", "Pause")
 HotKeySet("{F7}", "ClickFightBoss")
 
+Local $i = 0
+
 If WinActivate($TITLE_NAME) Then
    MoveWindow()
 ;~    TestScreen()
-   For $i = 0 In True
+   Do
 	  Attack()
 
-	  If $i == 10 Then
+	  If $i == 9 Then
 		 UpgradePlayer()
 		 ManageAngle()
 		 SwitchAttackBoss()
@@ -30,7 +32,7 @@ If WinActivate($TITLE_NAME) Then
 	  EndIf
 
 	  $i += 1
-   Next
+   Until $i == 10
 Else
    MsgBox(16, "Error", "Not Found Nox")
 EndIf

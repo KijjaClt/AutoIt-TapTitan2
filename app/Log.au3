@@ -17,8 +17,6 @@
 Func SaveLog($text)
     Local Const $sFilePath = StringTrimRight(@ScriptDir, 4) & "\log.txt"
 
-	ConsoleWrite($sFilePath)
-
     If Not FileExists($sFilePath) Then
 		 If Not _FileCreate("log.txt") Then
 			MsgBox($MB_SYSTEMMODAL, "Error", " Error Creating log.      error:" & @error)
@@ -38,7 +36,7 @@ EndFunc
 
 Func PrintLog($text)
    ConsoleWrite(TimeStamp() & " " & $text & @LF)
-   SaveLog($text)
+;~    SaveLog($text)
 EndFunc
 
 Func TimeStamp()

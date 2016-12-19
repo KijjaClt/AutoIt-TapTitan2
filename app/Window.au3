@@ -11,6 +11,8 @@
 
 ; Script Start - Add your code below here
 
+#include <Log.au3>
+
 Global Const $TITLE_NAME = "เครื่องจำลองนอกซ์"
 
 Global $WindowWidth
