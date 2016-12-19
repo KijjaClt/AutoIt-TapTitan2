@@ -18,7 +18,8 @@ Const $TITLE_NAME = "เครื่องจำลองนอกซ์"
 Global $isPause = False
 Global $WindowWidth
 Global $WindowHeight
-Global $petStatus = 1
+
+Global $x = 0, $y = 0
 
 Func InitWindowSize()
    Local $position = WinGetPos($TITLE_NAME)
@@ -110,7 +111,7 @@ Func SwitchAttackBoss()
 EndFunc
 
 Func ClickFightBoss()
-   Local $result = $ImageSearch("fight_boss.png")
+   Local $result = ImageSearch("fight_boss.png")
    If $result > 0 Then
 	  PrintLog("Switch to attack boss.")
 
@@ -128,8 +129,6 @@ Func ImageSearch($imgName)
    $hImageA =_GDIPlus_ImageLoadFromFile($fileA)
    $hBitmapA = _GDIPlus_BitmapCreateHBITMAPFromBitmap($hImageA)
 
-   $x = 0
-   $y = 0
    $result = _ImageSearch($hBitmapA, 1, $x, $y, 5, 0)
 
    _GDIPlus_ImageDispose($hImageA)
